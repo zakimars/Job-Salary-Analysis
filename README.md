@@ -95,14 +95,14 @@ The overall numbers suggest big raises. But the share of US jobs grew from **77%
 | Model | Test MAE | Test R² | CV MAE | vs baseline |
 |---|---|---|---|---|
 | Baseline: median by job category + level | \$43,846 | 0.258 | — | — |
-| **Linear regression** | **\$40,041** | **0.354** | \$40,524 | **−8.7%** |
-| Random Forest | \$39,962 | 0.357 | \$40,779 | −8.9% |
-| Gradient Boosting | \$40,143 | 0.355 | \$40,796 | −8.4% |
+| **Linear regression** | **\$40,038** | **0.354** | **\$40,550** | **−8.7%** |
+| Random Forest | \$40,324 | 0.346 | \$41,191 | −8.0% |
+| Gradient Boosting | \$40,203 | 0.343 | \$40,837 | −8.3% |
 
 **Results:**
-- **All three models beat the baseline by about 9%**, and their cross-validation scores match the test scores, so the results are stable.
-- **The complex models add nothing over linear regression**, so I chose linear regression for simplicity and interpretability. With only broad categorical features, salary behaves almost additively.
-- **What drives predictions:** on log(salary), each linear-regression coefficient reads as a percentage (e.g. "UK vs US: −X%"). **Region**, **experience level** and **job category** have the biggest effects; year, work setting and company size matter little. This matches the analysis above.
+- **All three models beat the baseline by 8–9%**, and their cross-validation scores match the test scores, so the results are stable.
+- **The complex models add nothing over linear regression**, which has the lowest error on both cross-validation and the test set, so I chose it. It's also the simplest and easiest to interpret. With only broad categorical features, salary behaves almost additively.
+- **What drives predictions:** on log(salary), each linear-regression coefficient reads as a percentage. With everything else held equal, the model estimates: **UK −29%, Canada −10% and rest of Europe −51% vs the US**; **Senior +66% and Executive +97% vs entry level**; **ML & AI +54% vs Data Analysis**. Year, work setting and company size matter little. This matches the analysis above.
 
 **Limitations:**
 - **R² ≈ 0.36 means most of the salary variation is not explained.** The dataset has no company names, skills, education or negotiation, which strongly affect pay.
